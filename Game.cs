@@ -1,33 +1,40 @@
-﻿// Include the namespaces (code libraries) you need below.
+﻿
+using _2D_Game_Assignment;
 using System;
 using System.Numerics;
 
-// The namespace your code is in.
+
 namespace MohawkGame2D
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
+    
     public class Game
     {
-        // Place your variables here:
+       Player1 player1 = new Player1();
+      
 
-
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
         public void Setup()
         {
+            Window.SetSize(1200, 1000);
+            Window.SetTitle("Shape Shuffle");
 
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
+        
         public void Update()
         {
-
+            Window.ClearBackground(Color.OffWhite);
+           player1.Update();
+           
         }
+
+       
+
+            
+                
+
+            
+        
+
     }
 
 }
