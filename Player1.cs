@@ -66,5 +66,15 @@ namespace _2D_Game_Assignment
 
            
         }
+
+        public bool IsTouching(CircleObstacle circle)
+        {
+            Vector2 playerPosition = new Vector2(circleX, circleY);
+            float distance = Vector2.Distance(playerPosition, circle.position);
+
+            return distance <= circle.radius;
+        }
+
+
     }
 }
