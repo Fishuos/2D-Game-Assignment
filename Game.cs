@@ -10,13 +10,17 @@ namespace MohawkGame2D
     public class Game
     {
        Player1 player1 = new Player1();
-       CircleObstacle circle = new CircleObstacle();
+       CircleObstacle[] circle = new CircleObstacle[20];
 
         public void Setup()
         {
-            Window.SetSize(1200, 1000);
+            Window.SetSize(800, 600);
             Window.SetTitle("Shape Shuffle");
-            circle.Setup();
+            for (int i = 0; i < circle.Length; i++)
+            {
+                circle[i] = new CircleObstacle();
+                circle[i].Setup();
+            }
             player1.Setup();
             
         }
@@ -25,7 +29,10 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
-            circle.Update();
+            for (int i = 0; i < circle.Length; i++)
+            {
+                circle[i].Update();
+            }
             player1.Update();
             int size = 75;
 

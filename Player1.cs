@@ -6,9 +6,8 @@ namespace _2D_Game_Assignment
 {
     internal class Player1
     {
-
-        float circleX = 300f;
-        float circleY = 500f;
+        Vector2 circle = new Vector2 (200,200);
+ 
         float circleSpeed = 5f;
         int circleSize = 20;
         public Color circleColor = Color.Black;
@@ -33,11 +32,11 @@ namespace _2D_Game_Assignment
         public void Update()    
         {
             Draw.FillColor = circleColor;
-            Draw.Circle(circleX, circleY, circleSize);
+            Draw.Circle(circle.X, circle.Y, circleSize);
             CircleMovement();
            
             
-            string text = $"{circleX},{circleY}";
+            string text = $"{circle.X},{circle.Y}";
             Text.Color = Color.Red;
             Text.Draw(text, 10, 10);
         }
@@ -47,34 +46,53 @@ namespace _2D_Game_Assignment
         
         public void CircleMovement()
         {
+            Vector2 input = Vector2.Zero;
+
+           
+
+
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
-                circleY -= circleSpeed;
+                input.Y -= circleSpeed;
             }
             if (Input.IsKeyboardKeyDown(KeyboardInput.S))
             {
-                circleY += circleSpeed;
+                input.Y += circleSpeed;
             }
             if (Input.IsKeyboardKeyDown(KeyboardInput.A))
             {
-                circleX -= circleSpeed;
+                input.X -= circleSpeed;
             }
             if (Input.IsKeyboardKeyDown(KeyboardInput.D))
             {
-                circleX += circleSpeed;
+                input.X += circleSpeed;
             }
-
-           
+            if (input != Vector2.Zero)
+            {
+                input = Vector2.Normalize(input);
+            }
+       
+            circle += input * circleSpeed;
         }
 
-        public bool IsTouching(CircleObstacle circle)
+        public bool IsTouching(CircleObstacle othercircle)
         {
-            Vector2 playerPosition = new Vector2(circleX, circleY);
-            float distance = Vector2.Distance(playerPosition, circle.position);
+           
+            float distance = Vector2.Distance(circle,othercircle.position);
 
-            return distance <= circle.radius;
+            return distance <= (circleSize + othercircle.radius);
+        }
+        public bool IsTouching(CircleObstacle[] circles)
+        {
+            foreach (var c in circles)
+            {
+                if (IsTouching(c)) 
+                    return true;
+            }
+            return false;
         }
 
 
     }
 }
+ 
