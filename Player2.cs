@@ -4,15 +4,15 @@ using System.Numerics;
 
 namespace _2D_Game_Assignment
 {
-    internal class Player1
+    internal class Player2
     {
-        Vector2 circle = new Vector2 (200,200);
- 
+        Vector2 circle = new Vector2(600, 200);
+
         float circleSpeed = 2.5f;
         int circleSize = 20;
-        public Color circleColor = Color.Black;
+        public Color circleColor;
 
-        public Color[] playerColor = 
+        public Color[] playerColor =
             [
             Color.Red,
             Color.Blue,
@@ -20,48 +20,44 @@ namespace _2D_Game_Assignment
             Color.Yellow,
             Color.Cyan,
             Color.Magenta,
-           
+
         ];
-        
+
         public void Setup()
         {
             circleColor = playerColor[MohawkGame2D.Random.Integer(playerColor.Length)];
         }
-        public void Update()    
+        public void Update()
         {
             Draw.FillColor = circleColor;
             Draw.Circle(circle.X, circle.Y, circleSize);
             CircleMovement();
-           
-           
-            
-           
-         
+
         }
-        
-        
-        
-        
+
+
+
+
         public void CircleMovement()
         {
             Vector2 input = Vector2.Zero;
 
-           
 
 
-            if (Input.IsKeyboardKeyDown(KeyboardInput.W))
+
+            if (Input.IsKeyboardKeyDown(KeyboardInput.I))
             {
                 input.Y -= circleSpeed;
             }
-            if (Input.IsKeyboardKeyDown(KeyboardInput.S))
+            if (Input.IsKeyboardKeyDown(KeyboardInput.K))
             {
                 input.Y += circleSpeed;
             }
-            if (Input.IsKeyboardKeyDown(KeyboardInput.A))
+            if (Input.IsKeyboardKeyDown(KeyboardInput.J))
             {
                 input.X -= circleSpeed;
             }
-            if (Input.IsKeyboardKeyDown(KeyboardInput.D))
+            if (Input.IsKeyboardKeyDown(KeyboardInput.L))
             {
                 input.X += circleSpeed;
             }
@@ -69,14 +65,14 @@ namespace _2D_Game_Assignment
             {
                 input = Vector2.Normalize(input);
             }
-       
+
             circle += input * circleSpeed;
         }
 
         public bool IsTouching(CircleObstacle othercircle)
         {
-           
-            float distance = Vector2.Distance(circle,othercircle.position);
+
+            float distance = Vector2.Distance(circle, othercircle.position);
 
             return distance <= (circleSize + othercircle.radius);
 
@@ -85,7 +81,7 @@ namespace _2D_Game_Assignment
         {
             foreach (CircleObstacle c in circles)
             {
-                if (IsTouching(c)) 
+                if (IsTouching(c))
                     return true;
             }
             return false;
@@ -94,4 +90,3 @@ namespace _2D_Game_Assignment
 
     }
 }
- 
