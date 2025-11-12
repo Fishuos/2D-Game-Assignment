@@ -12,7 +12,7 @@ namespace _2D_Game_Assignment
         int circleSize = 20;
         public Color circleColor = Color.Black;
 
-        Color[] playerColor = 
+        public Color[] playerColor = 
             [
             Color.Red,
             Color.Blue,
@@ -81,6 +81,7 @@ namespace _2D_Game_Assignment
             float distance = Vector2.Distance(circle,othercircle.position);
 
             return distance <= (circleSize + othercircle.radius);
+
         }
         public bool IsTouching(CircleObstacle[] circles)
         {
