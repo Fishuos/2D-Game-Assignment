@@ -1,9 +1,11 @@
 ﻿
 using _2D_Game_Assignment;
+using MohawkGame2D;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Numerics;
+using System.Text.RegularExpressions;
 
 
 namespace MohawkGame2D
@@ -12,7 +14,6 @@ namespace MohawkGame2D
     public class Game
     {
        Player1 player1 = new Player1();
-       CircleObstacle obstacle = new CircleObstacle();
         CircleObstacle[] circle = new CircleObstacle[20];
        
 
@@ -26,7 +27,9 @@ namespace MohawkGame2D
                 circle[i] = new CircleObstacle();
                 circle[i].Setup(circle, i);
             }
-           
+            
+            
+
         }
 
 
@@ -35,27 +38,43 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
+            Draw.FillColor = Color.Gray;
+            Draw.Rectangle(0, 0, 800, 75);
             for (int i = 0; i < circle.Length; i++)
             {
                 circle[i].Update();
             }
             player1.Update();
             CircleMatch();
+           
         }
 
         public void CircleMatch()
         {
             int size = 75;
-            if (player1.circleColor == obstacle.colorObs && player1.IsTouching(obstacle))
+            bool isColorMatching = false;
+
+            for (int i = 0; i < circle.Length; i++)
+            {
+                if (player1.circleColor == circle[i].color && player1.IsTouching(circle[i]))
+                {
+                    isColorMatching = true;
+                    break; 
+                }
+      
+            }
+            if (isColorMatching)
             {
                 Draw.FillColor = Color.Green;
-                Draw.Rectangle(400, 20, size, size);
             }
             else
             {
                 Draw.FillColor = Color.Red;
-                Draw.Rectangle(400, 20, size, size);
             }
+            Draw.Rectangle(200, 0, size, size);
+           
+            
+
         }
 
 

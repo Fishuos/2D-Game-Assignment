@@ -8,7 +8,7 @@ namespace _2D_Game_Assignment
     {
         Vector2 circle = new Vector2 (200,200);
  
-        float circleSpeed = 5f;
+        float circleSpeed = 2.5f;
         int circleSize = 20;
         public Color circleColor = Color.Black;
 
@@ -20,9 +20,7 @@ namespace _2D_Game_Assignment
             Color.Yellow,
             Color.Cyan,
             Color.Magenta,
-            Color.Gray,
-            Color.White,
-            Color.Black
+           
         ];
         
         public void Setup()
@@ -35,10 +33,10 @@ namespace _2D_Game_Assignment
             Draw.Circle(circle.X, circle.Y, circleSize);
             CircleMovement();
            
+           
             
-            string text = $"{circle.X},{circle.Y}";
-            Text.Color = Color.Red;
-            Text.Draw(text, 10, 10);
+           
+         
         }
         
         
