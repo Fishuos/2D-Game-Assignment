@@ -67,6 +67,29 @@ namespace _2D_Game_Assignment
             }
 
             circle += input * circleSpeed;
+
+            if (circle.X < circleSize)
+            {
+                circle.X = circleSize;
+            }
+
+
+            if (circle.X > 800 - circleSize)
+            {
+                circle.X = 800 - circleSize;
+            }
+
+
+            if (circle.Y < 75 + circleSize)
+            {
+                circle.Y = 75 + circleSize;
+            }
+
+
+            if (circle.Y > 600 - circleSize)
+            {
+                circle.Y = 600 - circleSize;
+            }
         }
 
         public bool IsTouching(CircleObstacle othercircle)
@@ -87,6 +110,10 @@ namespace _2D_Game_Assignment
             return false;
         }
 
+        public void Reset(Vector2 startPos)
+        {
+            circle = startPos;
+        }
 
     }
 }

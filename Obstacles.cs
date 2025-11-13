@@ -9,7 +9,7 @@ namespace _2D_Game_Assignment
     {
         Vector2 point;  
         public Vector2 position;
-        public float radius = 40f;
+        public float radius = 25f;
         public Color color = Color.Blue;
 
 
@@ -26,7 +26,7 @@ namespace _2D_Game_Assignment
         public void Setup(CircleObstacle[] allCircles, int currentIndex)
         {
             color = circleColor[MohawkGame2D.Random.Integer(circleColor.Length)];
-            float minY = 30 + 75 / 2f + radius; 
+            float minY = 30 + 75 / 1f + radius; 
             bool overlapping;
 
             do
@@ -54,8 +54,8 @@ namespace _2D_Game_Assignment
         public void Update()
         {
           bool isPointInCircle = Vector2.Distance(point,position) <= radius;
-          
-            
+
+            Draw.LineSize = 0;
             Draw.FillColor = color;
             Draw.Circle(position.X, position.Y, radius);
 
