@@ -25,6 +25,7 @@ namespace _2D_Game_Assignment
         
         public void Setup()
         {
+            //randomizes colour
             circleColor = playerColor[MohawkGame2D.Random.Integer(playerColor.Length)];
         }
         public void Update()    
@@ -39,33 +40,38 @@ namespace _2D_Game_Assignment
            
          
         }
-        
-        
-        
-        
+
+
+
+        // manages the players movement
         public void CircleMovement()
         {
             Vector2 input = Vector2.Zero;
 
-           
 
 
+            // if press (key), move in that direction
+            // move up
             if (Input.IsKeyboardKeyDown(KeyboardInput.W))
             {
                 input.Y -= circleSpeed;
             }
+            // move down
             if (Input.IsKeyboardKeyDown(KeyboardInput.S))
             {
                 input.Y += circleSpeed;
             }
+            // move left
             if (Input.IsKeyboardKeyDown(KeyboardInput.A))
             {
                 input.X -= circleSpeed;
             }
+            //move right
             if (Input.IsKeyboardKeyDown(KeyboardInput.D))
             {
                 input.X += circleSpeed;
             }
+            // normalzies speed, so it dosnt move faster on a angle
             if (input != Vector2.Zero)
             {
                 input = Vector2.Normalize(input);
@@ -73,6 +79,7 @@ namespace _2D_Game_Assignment
        
             circle += input * circleSpeed;
 
+            // stops player from going out of bounds
             if (circle.X < circleSize)
             {
                 circle.X = circleSize;
@@ -97,7 +104,7 @@ namespace _2D_Game_Assignment
             }
                 
         }
-
+        //manages if the circles are touching
         public bool IsTouching(CircleObstacle othercircle)
         {
            
@@ -115,6 +122,7 @@ namespace _2D_Game_Assignment
             }
             return false;
         }
+        //when reset is called, sets player back to starting position
         public void Reset(Vector2 startPos)
         {
             circle = startPos;

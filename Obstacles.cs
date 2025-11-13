@@ -23,12 +23,14 @@ namespace _2D_Game_Assignment
             Color.Magenta,
            
         ];
+        //makes circles have position and color / if theyre overlapping
         public void Setup(CircleObstacle[] allCircles, int currentIndex)
         {
             color = circleColor[MohawkGame2D.Random.Integer(circleColor.Length)];
+           
             float minY = 30 + 75 / 1f + radius; 
             bool overlapping;
-
+            
             do
             {
                 overlapping = false;
@@ -37,6 +39,7 @@ namespace _2D_Game_Assignment
                     Random.Float(minY, 600 - radius)     
                 );
 
+                
                 for (int i = 0; i < currentIndex; i++)
                 {
                     if (Vector2.Distance(position, allCircles[i].position) < radius + allCircles[i].radius)

@@ -78,6 +78,8 @@ namespace MohawkGame2D
 
         }
 
+
+        //resets players and circles once both players are touching and matching colours
         public void Reset()
         {
             
@@ -101,12 +103,12 @@ namespace MohawkGame2D
             }
         }
 
-
+        //checks if circle colour is touching player and if colour is same as player.
         public void CircleMatch()
         {
             int size = 75;
             
-
+            
             for (int i = 0; i < circle.Length; i++)
             {
                 if (player1.circleColor == circle[i].color && player1.IsTouching(circle[i]))
