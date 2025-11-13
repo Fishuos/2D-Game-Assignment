@@ -12,7 +12,7 @@ namespace _2D_Game_Assignment
         public float radius = 25f;
         public Color color = Color.Blue;
 
-
+        
         public Color[] circleColor =
             [
             Color.Red,

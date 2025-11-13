@@ -20,6 +20,8 @@ namespace MohawkGame2D
         bool isPlayer1Touching = false;
         bool isPlayer2Touching = false;
 
+
+        int rounds = 1;
         public void Setup()
         {
             Window.SetSize(800, 600);
@@ -50,9 +52,18 @@ namespace MohawkGame2D
             Text.Color = Color.Black;
             Text.Draw("Player 1", 35, 25);
             Text.Draw("Player 2", 645, 25);
+           string time = $"{Time.SecondsElapsed:0.00}";
+            Text.Draw(time, 300, 25);
+            string round = $"round:{rounds}";
+            Text.Draw(round,400, 25);
 
+            
 
-
+            
+            
+            
+            
+            
             for (int i = 0; i < circle.Length; i++)
                 circle[i].Update();
 
@@ -69,8 +80,7 @@ namespace MohawkGame2D
 
         public void Reset()
         {
-            isPlayer1Touching = false;
-            isPlayer2Touching = false;
+            
 
             for (int i = 0; i < circle.Length; i++)
             {
@@ -85,9 +95,9 @@ namespace MohawkGame2D
 
             if (isPlayer1Touching && isPlayer2Touching == true)
             {
+                rounds += 1;
                 player1.Update();
                 player2.Update();
-
             }
         }
 
